@@ -35,7 +35,7 @@ class Sport extends Component{
     }
 }
 const mapStateToProps = (state) => {
-   console.log(state)
+   //console.log(state)
     return {
         clickedSportIndex: state.sports.index,
         sports: state.sports.data.Sports,
@@ -50,8 +50,9 @@ const mapDispatchToProps = (dispatch)  => {
 
         },
         getData: () => {
-            // " http://www.mocky.io/v2/598d97550f0000fd021c8c34"
-            axios.get("http://www.mocky.io/v2/598997ae4100009504820f36").then(res => {dispatch(getData(res.data))})
+            //http://www.mocky.io/v2/598997ae4100009504820f36
+
+            axios.get(" http://www.mocky.io/v2/598d97550f0000fd021c8c34").then(res => {dispatch(getData(res.data))})
         }
 
     }
