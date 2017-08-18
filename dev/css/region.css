@@ -1,5 +1,16 @@
-.region{
+
+.league{
     list-style: none;
-    border: 1px solid black;
     padding: 1%;
+    box-sizing: border-box;
+}
+.game{
+    padding: 2%;
+    color: #B9BDC5;
+}
+.game:nth-child(odd) {
+    background-color: #262E40;
+}
+.game:nth-child(even) {
+    background-color: #1E2639;
 }

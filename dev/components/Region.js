@@ -5,37 +5,39 @@ import '../css/region.css'
 
 class Region extends Component{
     render(){
-        let leagueNameMap;
+        let regionMap;
+        let leagueMap;
+        let gameMap;
         if(this.props.regions && this.props.clickedSportIndex!==null){
-            //console.log(this.props.clickedSportIndex);
-            let leagueNames = [];
-            this.regionBar = this.props.regions.map((item,index) => {
-                // if(item!==null){
-                    //console.log(item["Leagues"].length)
 
-                    for(let i = 0; i<item["Leagues"].length;i++){
+            regionMap = this.props.regions.map((item,index) => {
+                //console.log(item["Leagues"])
+                if(item !== null && item["Leagues"].length>0) {
+                    leagueMap = item["Leagues"].map((item,index)=>{
+                        if(item["Games"].length>0){
+                        gameMap = item["Games"].map((item,index)=>{
+                            console.log( item["Team1Name"]+" "+item["Team2Name"])
+                            return(
+                                <li  key={index} className="game">{item["Team1Name"]+" vs "+item["Team2Name"]}</li>
+                            )
+                        })}
+                              return (
+                                  <ul key={index} className="league" id={index}><div className="leagueName">{item["LeagueName"]}</div><hr/>{gameMap}</ul>
+                               )
+                            })
+                    return (
+                        <div key={index} className="region" id={index}>
+                            {leagueMap}
 
-                        //console.log(i)
-                        leagueNames.push(item["Leagues"][i]["LeagueName"])
-                    }
-                    console.log(index)
-                       /* return (
-                            <li key={index} className="region" id={index}><div>{/!*item["RegionName"] + " " + *!/arr[index]} </div><br/></li>
-                        )*/
-
-
-
-                //}
+                        </div>
+                    )
+                }
             });
-            leagueNameMap = leagueNames.map((item,index)=>{
-                return (
-                    <li key={index} className="region" id={index}><div>{/*item["RegionName"] + " " + */leagueNames[index]} </div></li>
-                )
-            })
         }
         return (
             <div className="region-nav">
-                {this.props.regions?<ul>{leagueNameMap}</ul>:null}
+                {this.props.regions?<ul></ul>:null}
+                {regionMap}
             </div>
         )
     }
